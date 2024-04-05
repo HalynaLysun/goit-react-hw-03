@@ -6,7 +6,6 @@ export default function Contact({ contact }) {
   return (
     <div className={css.wrapper}>
       <div>
-        {" "}
         <h1>
           <RiUser3Fill />
           {contact.name}

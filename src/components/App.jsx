@@ -10,20 +10,26 @@ export default function App() {
 
   const handleChange = (evt) => {
     setInputValue(evt.target.value);
-    const arr = contacts.filter((el) => {
-      el.name.includes(evt.target.value);
-      console.log(el.name);
-      console.log(evt.target.value);
-    });
-    console.log(arr);
   };
+
+  const arrContacts = contacts.filter((el) =>
+    el.name.includes(inputValue.toUpperCase())
+  );
+
+  // const handleSearch = () => {
+  //   setContactsData(arrContacts);
+  // };
 
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm />
       <SearchBox input={inputValue} onChange={handleChange} />
-      <ContactList contactData={contactData} />
+      <ContactList
+        contactData={contactData}
+        arrContacts={arrContacts}
+        input={inputValue}
+      />
     </div>
   );
 }
