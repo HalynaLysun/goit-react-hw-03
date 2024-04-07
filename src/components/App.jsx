@@ -18,8 +18,15 @@ export default function App() {
   });
   const [inputValue, setInputValue] = useState("");
 
+  const addContacts = (newContact) => {
+    setContactsData((prevContacts) => {
+      return [...prevContacts, newContact];
+    });
+  };
+
   const handleChange = (evt) => {
     setInputValue(evt.target.value);
+    console.log(evt.target.value);
   };
 
   const arrContacts = contactData.filter((el) => {
@@ -33,8 +40,8 @@ export default function App() {
       .max(50, "Too long")
       .required("Required"),
     number: Yup.string()
-      .min(10, "Too short")
-      .max(12, "Too long")
+      .min(3, "Too short")
+      .max(50, "Too long")
       .required("Required"),
   });
 
@@ -54,7 +61,7 @@ export default function App() {
       <ContactForm
         init={initialValues}
         valid={FeedbackSchema}
-        data={contactData}
+        onAdd={addContacts}
       />
       <SearchBox input={inputValue} onChange={handleChange} />
       <ContactList

@@ -1,12 +1,11 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 
-export default function ContactForm({ init, valid, data }) {
+export default function ContactForm({ init, valid, onAdd }) {
   const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
-    data.push(values);
-    console.log(data);
+    onAdd(values);
   };
 
   const nameFieldId = useId();
