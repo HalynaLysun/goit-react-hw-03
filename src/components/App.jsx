@@ -3,9 +3,10 @@ import SearchBox from "./SearchBox/SearchBox";
 import ContactList from "./ContactList/ContactList";
 import contacts from "../contacts.json";
 import { useState } from "react";
+import * as Yup from "yup";
 
 export default function App() {
-  // const [contactData, setContactsData] = useState(contacts);
+  const [contactData, setContactsData] = useState(contacts);
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (evt) => {
@@ -17,10 +18,30 @@ export default function App() {
     return contactName.includes(inputValue.toLowerCase());
   });
 
+  const FeedbackSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(3, "Too short")
+      .max(50, "Too long")
+      .required("Required"),
+    number: Yup.string()
+      .min(10, "Too short")
+      .max(12, "Too long")
+      .required("Required"),
+  });
+
+  const initialValues = {
+    id: "",
+    name: "",
+    number: "",
+  };
+  //   const handlePush = (ev) => {
+  //   setContactsData(contacts.push())
+  // }
+
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm />
+      <ContactForm init={initialValues} valid={FeedbackSchema} />
       <SearchBox input={inputValue} onChange={handleChange} />
       <ContactList arrContacts={arrContacts} />
     </div>
