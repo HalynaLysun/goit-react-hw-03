@@ -1,20 +1,23 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
 
-export default function ContactForm({ init, valid }) {
+export default function ContactForm({ init, valid, data }) {
   const handleSubmit = (values, actions) => {
     console.log(values);
     actions.resetForm();
+    data.push(values);
+    console.log(data);
   };
 
   const nameFieldId = useId();
   const numberFieldId = useId();
 
   return (
-    <Formik>
+    <Formik
       initialValues={init}
       onSubmit={handleSubmit}
       validationSchema={valid}
+    >
       <Form>
         <div>
           <label htmlFor={nameFieldId}>Name</label>
@@ -26,6 +29,8 @@ export default function ContactForm({ init, valid }) {
           <Field type="text" name="number" id={numberFieldId}></Field>
           <ErrorMessage name="number" as="span" />
         </div>
+
+        <button type="submit">Add contact</button>
       </Form>
     </Formik>
   );
