@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useId } from "react";
+import css from "./ContactForm.module.css";
 
 export default function ContactForm({ init, valid, onAdd }) {
   const handleSubmit = (values, actions) => {
@@ -16,7 +17,7 @@ export default function ContactForm({ init, valid, onAdd }) {
       onSubmit={handleSubmit}
       validationSchema={valid}
     >
-      <Form>
+      <Form className={css.form}>
         <div>
           <label htmlFor={nameFieldId}>Name</label>
           <Field type="text" name="name" id={nameFieldId}></Field>

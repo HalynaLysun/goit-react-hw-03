@@ -69,12 +69,7 @@ export default function App() {
         onAdd={addContacts}
       />
       <SearchBox input={inputValue} onChange={handleChange} />
-      <ContactList
-        contactData={contactData}
-        arrContacts={arrContacts}
-        inputValue={inputValue}
-        onDelete={deleteContact}
-      />
+      <ContactList arrContacts={arrContacts} onDelete={deleteContact} />
     </div>
   );
 }
