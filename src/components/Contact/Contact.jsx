@@ -3,7 +3,6 @@ import { BiSolidPhone } from "react-icons/bi";
 import css from "./Contact.module.css";
 
 export default function Contact({ contact: { id, name, number }, onDelete }) {
-  console.log(typeof onDelete);
   return (
     <div className={css.wrapper}>
       <div>
