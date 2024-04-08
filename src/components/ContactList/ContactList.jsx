@@ -1,7 +1,12 @@
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
 
-export default function ContactList({ contactData, arrContacts, inputValue }) {
+export default function ContactList({
+  contactData,
+  arrContacts,
+  inputValue,
+  onDelete,
+}) {
   if (inputValue === "") {
     console.log(inputValue);
     return (
@@ -18,7 +23,7 @@ export default function ContactList({ contactData, arrContacts, inputValue }) {
     <ul className={css.list}>
       {arrContacts.map((contact) => (
         <li className={css.item} key={contact.id}>
-          <Contact contact={contact} />
+          <Contact contact={contact} onDelete={onDelete} />
         </li>
       ))}
     </ul>

@@ -10,17 +10,33 @@ export default function App() {
   const [contactData, setContactsData] = useState(() => {
     const savedContacts = window.localStorage.getItem("saved-contacts");
     console.log(savedContacts);
+    // const newArr = JSON.parse(savedContacts);
+    // console.log(newArr);
+    // const deleteId = newArr.map((el) => {
+    //   console.log(el.id);
+    //   const obj = Object.values(el.id);
+    //   console.log(obj);
+    //   return obj;
+    // });
+    // console.log(obj);
 
     if (savedContacts !== null) {
       return JSON.parse(savedContacts);
     }
     return contacts;
   });
+
   const [inputValue, setInputValue] = useState("");
 
   const addContacts = (newContact) => {
     setContactsData((prevContacts) => {
       return [...prevContacts, { ...newContact, id: nanoid() }];
+    });
+  };
+
+  const deleteContact = (contactId) => {
+    setContactsData((prevContacts) => {
+      return prevContacts.filter((con) => con.id !== contactId);
     });
   };
 
@@ -67,6 +83,7 @@ export default function App() {
         contactData={contactData}
         arrContacts={arrContacts}
         inputValue={inputValue}
+        onDelete={deleteContact}
       />
     </div>
   );
