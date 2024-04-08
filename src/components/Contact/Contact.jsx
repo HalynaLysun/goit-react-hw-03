@@ -3,6 +3,7 @@ import { BiSolidPhone } from "react-icons/bi";
 import css from "./Contact.module.css";
 
 export default function Contact({ contact: { id, name, number }, onDelete }) {
+  console.log(typeof onDelete);
   return (
     <div className={css.wrapper}>
       <div>
@@ -16,13 +17,7 @@ export default function Contact({ contact: { id, name, number }, onDelete }) {
         </p>
       </div>
 
-      <button
-        type="button"
-        className={css.button}
-        onClick={() => {
-          onDelete(id);
-        }}
-      >
+      <button type="button" className={css.button} onClick={() => onDelete(id)}>
         Delete
       </button>
     </div>

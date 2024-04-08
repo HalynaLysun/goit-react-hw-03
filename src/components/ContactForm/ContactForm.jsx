@@ -3,8 +3,6 @@ import { useId } from "react";
 
 export default function ContactForm({ init, valid, onAdd }) {
   const handleSubmit = (values, actions) => {
-    console.log(values);
-    console.log(actions);
     actions.resetForm();
     onAdd(values);
   };
