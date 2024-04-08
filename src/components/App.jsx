@@ -20,7 +20,7 @@ export default function App() {
 
   const addContacts = (newContact) => {
     setContactsData((prevContacts) => {
-      return [...prevContacts, newContact];
+      return [...prevContacts, { ...newContact, id: nanoid() }];
     });
   };
 
@@ -46,7 +46,6 @@ export default function App() {
   });
 
   const initialValues = {
-    id: nanoid(),
     name: "",
     number: "",
   };
